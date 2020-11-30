@@ -5,11 +5,6 @@
 use maud::{html, Markup};
 use std:: borrow::Cow;
 
-#[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
-}
-
 #[get("/<name>")]
 fn hello<'a>(name: Cow<'a, str>) -> Markup {
     html! {
@@ -17,7 +12,6 @@ fn hello<'a>(name: Cow<'a, str>) -> Markup {
         p{ "Nice to meet you!" }
     }
 }
-
 
 fn main() {
     rocket::ignite().mount("/", routes![hello]).launch();
